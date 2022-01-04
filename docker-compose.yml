@@ -2,16 +2,16 @@ version: '3.5'
 
 services:
 
-  streamlit:
-    build: .
-    restart: unless-stopped
-    env_file: &envfile
-      - .env
-    command: bash -c "ls && streamlit run app.py"
-    ports:
-      - "8501:8501"
-    volumes:
-      - ./:/home/app/web
+    streamlit:
+        build: .
+        restart: unless-stopped
+        env_file: & envfile
+        - .env
+        command: bash - c "ls && streamlit run app.py"
+        ports:
+            - "8501:8501"
+        volumes:
+            - . /: /home/app/web
 
 volumes:
-  static_volume:
+    static_volume:

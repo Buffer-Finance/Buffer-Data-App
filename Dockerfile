@@ -2,9 +2,6 @@
 FROM python:3.7.0
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
-# Your contact, so can people blame you afterwards
-LABEL maintainer="tech@nurturelabs.co"
-
 ENV HOME=/home/app
 ENV APP_HOME=/home/app/web
 RUN mkdir -p $APP_HOME
