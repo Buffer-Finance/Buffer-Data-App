@@ -37,6 +37,8 @@ def app():
         # "4%"
     )
 
+    total_option_size= [data['option_size']['total_option_size']] if [data['option_size']['total_option_size']] != ['-'] else [None]
+    
     df = pd.DataFrame({
         'Assets': list(data['options']['options_sold_per_asset'].keys()) + ['Total'],
         'Options': list(
@@ -45,10 +47,10 @@ def app():
         'Predictions': list(
             data['predictions']['predictions_sold_per_asset'].values()
         ) + [data['predictions']['total_sold']],
-        # 'Option Size': list(
-        #     data['option_size']['option_size_per_asset'].values()
-        #     | select(lambda x: round(x, 1))
-        # ) + [data['option_size']['total_option_size']],
+        'Option Size': list(
+            data['option_size']['option_size_per_asset'].values()
+            | select(lambda x: round(x, 1))
+        ) + total_option_size,
         'Positive Payout/Asset': list(
             data['positive_payout']['positive_payout_per_asset'].values()
             | select(lambda x: round(x, 1))
