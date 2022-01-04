@@ -51,6 +51,10 @@ def app():
             data['option_size']['option_size_per_asset'].values()
             | select(lambda x: round(x, 1))
         ) + total_option_size,
+        'Option BNB Size': list(
+            data['option_bnb_size']['option_size_per_asset'].values()
+            | select(lambda x: round(x, 1))
+        ) + [data['option_bnb_size']['total_option_bnb_size']],
         'Positive Payout/Asset': list(
             data['positive_payout']['positive_payout_per_asset'].values()
             | select(lambda x: round(x, 1))
