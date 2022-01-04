@@ -6,7 +6,7 @@ from apps.config import BASE_URL
 
 
 def app():
-    response = requests.get(f"{BASE_URL}/options/stats/?timespan=all")
+    response = requests.get(f"{BASE_URL}/options/stats/")
     data = response.json()['all_options']
     st.write(
         """
