@@ -12,7 +12,7 @@ def app():
     """
     )
 
-    r = requests.get("https://api.buffer.finance/stats/json")
+    r = requests.get("https://api.buffer.finance/stats/")
     data = r.json()
 
     col1, col2, col3, col4 = st.columns(4)

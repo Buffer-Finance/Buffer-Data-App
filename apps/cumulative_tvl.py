@@ -5,7 +5,7 @@ import requests
 
 def app():
 
-    response = requests.get(f"{BASE_URL}/tlv/")
+    response = requests.get(f"{BASE_URL}/tvl/")
     data = response.json()
 
     st.write(
