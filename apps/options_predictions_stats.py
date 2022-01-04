@@ -45,10 +45,10 @@ def app():
         'Predictions': list(
             data['predictions']['predictions_sold_per_asset'].values()
         ) + [data['predictions']['total_sold']],
-        'Option Size': list(
-            data['option_size']['option_size_per_asset'].values()
-            | select(lambda x: round(x, 1))
-        ) + [data['option_size']['total_option_size']],
+        # 'Option Size': list(
+        #     data['option_size']['option_size_per_asset'].values()
+        #     | select(lambda x: round(x, 1))
+        # ) + [data['option_size']['total_option_size']],
         'Positive Payout/Asset': list(
             data['positive_payout']['positive_payout_per_asset'].values()
             | select(lambda x: round(x, 1))
@@ -58,5 +58,4 @@ def app():
             | select(lambda x: round(x, 1))
         ) + [data['positive_net_profit']['total_positive_net_profit']]
     })
-
     st.table(df)
