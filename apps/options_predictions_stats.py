@@ -15,7 +15,8 @@ def app():
     r = requests.get("https://api.buffer.finance/stats/")
     data = r.json()
 
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2 = st.columns(2)
+    col3, col4 = st.columns(2)
     col1.metric(
         "Net LP Gain",
         f'{round(data["net_lp_gain"], 3)} BNB',
