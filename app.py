@@ -1,5 +1,5 @@
 from multiapp import MultiApp
-from apps import cumulative_options_sold, ibfr_holders, autoclose_verification, asset_iv, option_details, daily_option_stats, options_predictions_stats, referral_tracking, weekly_options_stats, cumulative_tvl
+from apps import ibfr_holder_stats,cumulative_options_sold, ibfr_holders, autoclose_verification, asset_iv, option_details, daily_option_stats, options_predictions_stats, referral_tracking, weekly_options_stats, cumulative_tvl
 
 app = MultiApp()
 
@@ -21,6 +21,8 @@ app.add_app("All Option Details", option_details.app)
 app.add_app("Referral Tracking", referral_tracking.app)
 
 app.add_app("Auto Close Verification", autoclose_verification.app)
+
+app.add_app("IBFR Stats", ibfr_holder_stats.app)
 
 # app.add_app("IBFR Holder Stats", ibfr_holders.app)
 
