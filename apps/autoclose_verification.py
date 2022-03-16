@@ -24,7 +24,6 @@ def app():
     for data in options:
         asset = data.pop('asset')
         data['asset'] = asset['name']
-        data.pop('internal_txns')
         auto_task = data.pop('auto_task')
         data['auto_task'] = str(auto_task)
 
