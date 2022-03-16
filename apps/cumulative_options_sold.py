@@ -2,12 +2,11 @@ import pandas as pd
 import requests
 import streamlit as st
 import plotly.express as px
-from apps.config import BASE_URL
+from apps.config import BASE_URL, ENVIRONMENT
 
 
 def app():
-    response = requests.get(f"{BASE_URL}/options/stats/")
-    data = response.json()
+
     st.write(
         """
     ## *Buffer Finance*
@@ -15,14 +14,21 @@ def app():
     """
     )
 
+    environment = st.selectbox(
+        'Choose an environment', [_environment for _environment in ENVIRONMENT])
+
+    response = requests.get(
+        f"{BASE_URL}/options/stats/?environment={environment}")
+    data = response.json()
+
     st.subheader(
-        f"Current cumulative options size = {round(response.json()['current_cumulative_option_size'],4)} BNB")
+        f"Current cumulative options size = {round(data['current_cumulative_option_size'],4)} {data['default_asset']}")
 
     df = pd.DataFrame(data['cumulative_option_size_graph'])
 
     fig = px.line(
         df,
-        x="created_at",
+        x="creation_date",
         y="cumulative_option_size",
         title="Cumulative options size"
     )
@@ -32,13 +38,13 @@ def app():
     st.plotly_chart(fig)
 
     st.subheader(
-        f"Current cumulative options count = {response.json()['cumulative_option_count']}")
+        f"Current cumulative options count = {data['cumulative_option_count']}")
 
     df = pd.DataFrame(data['cumulative_options_graph'])
 
     fig = px.line(
         df,
-        x="created_at",
+        x="creation_date",
         y="option_count",
         title="Cumulative option count"
     )

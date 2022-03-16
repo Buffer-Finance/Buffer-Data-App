@@ -1,12 +1,10 @@
 import streamlit as st
 from apps.config import BASE_URL
 import requests
+from apps.config import BASE_URL, ENVIRONMENT
 
 
 def app():
-
-    response = requests.get(f"{BASE_URL}/tvl/")
-    data = response.json()
 
     st.write(
         f"""
@@ -14,6 +12,13 @@ def app():
     # Cumulative TVL
     """
     )
+
+    environment = st.selectbox(
+        'Choose an environment', [_environment for _environment in ENVIRONMENT])
+
+    response = requests.get(f"{BASE_URL}/tvl/?environment={environment}")
+    data = response.json()
+
     col1, col2 = st.columns(2)
     col3, col4 = st.columns(2)
     col1.metric(

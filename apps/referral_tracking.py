@@ -1,15 +1,15 @@
-import pandas as pd
-import requests
 import streamlit as st
 from apps.config import BASE_URL, ENVIRONMENT
+import requests
+import pandas as pd
 
 
 def app():
 
     st.write(
-        """
+        f"""
     ## *Buffer Finance*
-    # All Option Details
+    # Referral Tracking
     """
     )
 
@@ -17,11 +17,8 @@ def app():
         'Choose an environment', [_environment for _environment in ENVIRONMENT])
 
     response = requests.get(
-        f"{BASE_URL}/options_and_predictions/?environment={environment}")
+        f"{BASE_URL}/referral_tracking/?environment={environment}")
     data = response.json()
-    for _data in data:
-        asset = _data.pop('asset')
-        _data['asset_name'] = asset.get('name')
 
     df = pd.DataFrame(data)
     st.table(df)

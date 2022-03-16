@@ -2,13 +2,10 @@ import pandas as pd
 import requests
 import streamlit as st
 import plotly.express as px
-from apps.config import BASE_URL
+from apps.config import BASE_URL, ENVIRONMENT
 
 
 def app():
-
-    response = requests.get(f"{BASE_URL}/ibfr/holders/")
-    data = response.json()
 
     st.write(
         """
@@ -16,6 +13,13 @@ def app():
     # IBFR Holder Stats
     """
     )
+
+    environment = st.selectbox(
+        'Choose an environment', [_environment for _environment in ENVIRONMENT])
+
+    response = requests.get(
+        f"{BASE_URL}/ibfr/holders/?environment={environment}")
+    data = response.json()
 
     st.subheader(f"Current number of IBFR holders = {data['current_holders']}")
 

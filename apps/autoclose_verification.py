@@ -1,8 +1,7 @@
-from random import choice
 import pandas as pd
 import requests
 import streamlit as st
-from apps.config import BASE_URL
+from apps.config import BASE_URL, ENVIRONMENT
 
 
 def app():
@@ -13,10 +12,14 @@ def app():
     # Auto Close Verification
     """
     )
+
+    environment = st.selectbox(
+        'Choose an environment', [_environment for _environment in ENVIRONMENT])
+
     choice = st.radio('Select option status', ['Closed', 'Active'])
 
     response = requests.get(
-        f"{BASE_URL}/options/autoclose/verification/?option_status={choice.lower()}")
+        f"{BASE_URL}/options/autoclose/verification/?option_status={choice.lower()}&environment={environment}")
     options = response.json()
     for data in options:
         asset = data.pop('asset')
@@ -26,8 +29,3 @@ def app():
         data['auto_task'] = str(auto_task)
 
     st.dataframe(options, 2000, 1000)
-
-    df = pd.DataFrame(options)
-
-    tooltips_df = pd.DataFrame(options)
-    st.dataframe(df.style.set_tooltips(tooltips_df))
