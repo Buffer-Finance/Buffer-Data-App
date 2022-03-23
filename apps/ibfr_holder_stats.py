@@ -15,10 +15,17 @@ def app():
     )
 
     response = requests.get(
-        f"{BASE_URL}/ibfr/balances/")
-    data = response.json()['data']
+        f"{BASE_URL}/ibfr/holding/stats/")
+    data = response.json()
+    col1, col2 = st.columns(2)
 
-    st.subheader(
-        f"Current iBFR holders = {len(data)}")
-
-    st.dataframe(data, 2000, 1000)
+    col1.metric(
+        "BSC Mainnet",
+        f'{data["mainnet"]} Holders',
+        # "1.2 °F"
+    )
+    col2.metric(
+        "Avalanche Mainnet",
+        f'{data["avalanche-mainnet"]} Holders',
+        # "-8%"
+    )

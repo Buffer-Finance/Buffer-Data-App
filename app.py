@@ -22,7 +22,7 @@ app.add_app("Referral Tracking", referral_tracking.app)
 
 app.add_app("Auto Close Verification", autoclose_verification.app)
 
-app.add_app("IBFR Stats", ibfr_holder_stats.app)
+app.add_app("IBFR Holder Stats", ibfr_holder_stats.app)
 
 # app.add_app("IBFR Holder Stats", ibfr_holders.app)
 
