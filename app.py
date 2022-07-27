@@ -1,7 +1,9 @@
 from multiapp import MultiApp
-from apps import ibfr_holder_stats, cumulative_options_sold, ibfr_holders, autoclose_verification, asset_iv, option_details, daily_option_stats, options_predictions_stats, referral_tracking, weekly_options_stats, cumulative_tvl, ibfr_moving_price_average
+from apps import ibfr_holder_stats, cumulative_options_sold, ibfr_holders, autoclose_verification, asset_iv, option_details, daily_option_stats, options_predictions_stats, referral_tracking, weekly_options_stats, cumulative_tvl, ibfr_moving_price_average, ibfr_accounting
 app = MultiApp()
 
+
+app.add_app("IBFR Accounting", ibfr_accounting.app)
 app.add_app("Overall Options/Predictions Statistics",
             options_predictions_stats.app)
 app.add_app("Cumulative Options Sold", cumulative_options_sold.app)
