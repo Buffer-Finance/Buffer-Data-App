@@ -5,15 +5,15 @@ import pandas as pd
 from pipe import select
 import requests
 from apps.config import BASE_URL, ENVIRONMENT
-import humanize
+# import humanize
 
 import plotly.express as px
 
 
-def humanize_value(value: int):
-    if value > 1e4:
-        return humanize.intword(value)
-    return value
+# def humanize_value(value: int):
+#     if value > 1e4:
+#         return humanize.intword(value)
+#     return value
 
 
 def app():
@@ -32,22 +32,22 @@ def app():
 
     col1.metric(
         "General User",
-        f'{humanize_value(round(data["user_balance"], 3))} iBFR',
+        f'{(round(data["user_balance"], 3))} iBFR',
         # "1.2 °F"
     )
     col2.metric(
         "iBFR Staking Contract",
-        f'{humanize_value(round(data["ibfr_staking"], 3))} iBFR',
+        f'{(round(data["ibfr_staking"], 3))} iBFR',
         # "-8%"
     )
     col3.metric(
         "Swaps",
-        f'{humanize_value(round(data["swaps"], 3))} iBFR',
+        f'{(round(data["swaps"], 3))} iBFR',
         # "4%"
     )
     col4.metric(
         "rBFR staking contract",
-        f"{humanize_value(round(data['rbfr_staking'],3))} iBFR",
+        f"{(round(data['rbfr_staking'],3))} iBFR",
         # "4%"
     )
 
