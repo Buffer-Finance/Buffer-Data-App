@@ -3,7 +3,6 @@ from apps import ibfr_holder_stats, cumulative_options_sold, ibfr_holders, autoc
 app = MultiApp()
 
 
-app.add_app("IBFR Accounting", ibfr_accounting.app)
 app.add_app("Overall Options/Predictions Statistics",
             options_predictions_stats.app)
 app.add_app("Cumulative Options Sold", cumulative_options_sold.app)
@@ -16,5 +15,6 @@ app.add_app("Referral Tracking", referral_tracking.app)
 app.add_app("Auto Close Verification", autoclose_verification.app)
 app.add_app("IBFR Holder Stats", ibfr_holder_stats.app)
 app.add_app("IBFR Moving Price Average", ibfr_moving_price_average.app)
+app.add_app("IBFR Accounting", ibfr_accounting.app)
 # app.add_app("IBFR Holder Stats", ibfr_holders.app)
 app.run()
