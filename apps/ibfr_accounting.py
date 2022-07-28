@@ -89,19 +89,25 @@ def app():
     """
     )
 
-    s = data['vesting']['overall_vesting_schedule']
+    cumulative_vested_tokens = data['vesting']['cumulative_vesting_schedule']
+    contracts = list(data['vesting']['owner'].keys())
+    tokens = {}
+    for c in contracts:
+        tokens.update({c: data['vesting']['all_schedules'][c][0]})
+
     df = pd.DataFrame(
         {
-            'Time': s['timestamp'],
-            'Vesting_tokens': s['vested_tokens'],
+            'Time': cumulative_vested_tokens[1],
+            'All Contracts': cumulative_vested_tokens[0],
+            **tokens
         },
-        columns=['Time', 'Vesting_tokens']
+        columns=['Time', 'All Contracts',  *contracts]
     )
 
     fig = px.line(
         df,
         x="Time",
-        y=['Vesting_tokens'],
+        y=['All Contracts',  *contracts],
     )
     fig.update_xaxes(gridcolor='grey')
     fig.update_yaxes(gridcolor='grey')
