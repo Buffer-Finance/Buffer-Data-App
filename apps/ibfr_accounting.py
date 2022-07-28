@@ -29,6 +29,7 @@ def app():
 
     col1, col2 = st.columns(2)
     col3, col4 = st.columns(2)
+    col5, col6 = st.columns(2)
 
     col1.metric(
         "General User",
@@ -50,6 +51,16 @@ def app():
         f"{(round(data['rbfr_staking'],3))} iBFR",
         # "4%"
     )
+    col5.metric(
+        "Multisig Wallet",
+        f'{(round(data["multisign"], 3))} iBFR',
+        # "4%"
+    )
+    # col6.metric(
+    #     "Vesting",
+    #     f"{(round(data['vesting']['total_balance_in_vesting'],3))} iBFR",
+    #     # "4%"
+    # )
 
     df = pd.DataFrame({
         'Vesting Contract': list(data['vesting']['owner'].keys()),
