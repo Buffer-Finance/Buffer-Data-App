@@ -1,5 +1,5 @@
 from multiapp import MultiApp
-from apps import ibfr_holder_stats, cumulative_options_sold, ibfr_holders, autoclose_verification, asset_iv, option_details, daily_option_stats, options_predictions_stats, referral_tracking, weekly_options_stats, cumulative_tvl, ibfr_moving_price_average, ibfr_accounting
+from apps import ibfr_holder_stats, cumulative_options_sold, ibfr_holders, autoclose_verification, asset_iv, option_details, daily_option_stats, options_predictions_stats, referral_tracking, weekly_options_stats, cumulative_tvl, ibfr_moving_price_average, ibfr_accounting, performance_monitoring_fe, performance_monitoring_be
 app = MultiApp()
 
 
@@ -16,5 +16,7 @@ app.add_app("Auto Close Verification", autoclose_verification.app)
 app.add_app("IBFR Holder Stats", ibfr_holder_stats.app)
 app.add_app("IBFR Moving Price Average", ibfr_moving_price_average.app)
 app.add_app("IBFR Accounting", ibfr_accounting.app)
+app.add_app("Performance Monitoring - FE", performance_monitoring_fe.app)
+app.add_app("Performance Monitoring - BE", performance_monitoring_be.app)
 # app.add_app("IBFR Holder Stats", ibfr_holders.app)
 app.run()
